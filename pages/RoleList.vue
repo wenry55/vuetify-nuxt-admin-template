@@ -42,12 +42,14 @@
 
 export default {
   name: "RoleList",
+  layout: "admin",
   props: {
     title: {
       type: String,
       default: "Role List",
     },
   },
+
   data() {
     return {
       roles: [

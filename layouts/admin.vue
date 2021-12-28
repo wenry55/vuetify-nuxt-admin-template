@@ -3,10 +3,16 @@
     <default-bar />
 
     <default-drawer />
-    
-    <v-container>
-      <Nuxt />
-    </v-container>
+
+    <v-main>
+      <v-container fluid>
+        <router-view :key="$route.path" />
+      </v-container>
+    </v-main>
+
+    <default-footer />
+
+    <default-settings />
   </v-app>
 </template>
 
@@ -25,6 +31,16 @@ export default {
       import(
         /* webpackChunkName: "default-drawer" */
         '@/components/Drawer'
+      ),
+    DefaultFooter: () =>
+      import(
+        /* webpackChunkName: "default-drawer" */
+        '@/components/Footer'
+      ),
+    DefaultSettings: () =>
+      import(
+        /* webpackChunkName: "default-drawer" */
+        '@/components/Settings'
       ),
   },
 

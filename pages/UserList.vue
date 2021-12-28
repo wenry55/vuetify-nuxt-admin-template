@@ -77,6 +77,7 @@
 <script>
 export default {
   name: "UserList",
+  layout: 'admin',
   props: {
     title: {
       type: String,

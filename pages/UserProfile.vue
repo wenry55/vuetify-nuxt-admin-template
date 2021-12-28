@@ -101,5 +101,7 @@
 </template>
 
 <script>
-export default { name: "UserProfileView" };
+export default { name: "UserProfileView",
+layout: 'admin',
+};
 </script>

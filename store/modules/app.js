@@ -10,52 +10,52 @@ const state = {
     {
       title: 'Dashboard',
       icon: 'mdi-view-dashboard',
-      to: '/',
+      to: '/dashboard',
     },
     {
       title: 'User Profile',
       icon: 'mdi-account',
-      to: '/components/profile/',
+      to: '/userprofile',
     },
     {
       title: 'Regular Tables',
       icon: 'mdi-clipboard-outline',
-      to: '/tables/regular/',
+      to: '/regulartables',
     },
     {
       title: 'Typography',
       icon: 'mdi-format-font',
-      to: '/components/typography/',
+      to: '/typography',
     },
     {
       title: 'Icons',
       icon: 'mdi-chart-bubble',
-      to: '/components/icons/',
+      to: '/icons',
     },
     {
       title: 'Google Maps',
       icon: 'mdi-map-marker',
-      to: '/maps/google/',
+      to: '/googlemaps',
     },
     {
       title: 'Notifications',
       icon: 'mdi-bell',
-      to: '/components/notifications/',
+      to: '/notifications',
     },
     {
       title: 'User List',
       icon: 'mdi-account-multiple',
-      to: '/components/userlist/',
+      to: '/userlist',
     },
     {
       title: 'Role List',
       icon: 'mdi-account-check',
-      to: '/components/rolelist/',
+      to: '/rolelist',
     },
     {
       title: 'Resource List',
       icon: 'mdi-archive',
-      to: '/components/resourcelist/',
+      to: '/resourcelist',
     },
 
   ],
