@@ -24,6 +24,9 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     // { src: '~/plugins/chartist.js', mode: 'client' }
+    // { src: '~/plugins/index.js', mode: 'client' }
+    '@/plugins/vuetify.js',
+    '@/plugins/chartist.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -52,6 +55,29 @@ export default {
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/styles/variables.scss'],
+    theme: {
+      dark: false,
+      themes: {
+        dark: {
+          primary: '#E91E63',
+          secondary: '#9C27b0',
+          accent: '#e91e63',
+          info: '#00CAE3',
+          success: '#4CAF50',
+          warning: '#FB8C00',
+          error: '#FF5252',
+        },
+        light: {
+          primary: '#E91E63',
+          secondary: '#9C27b0',
+          accent: '#e91e63',
+          info: '#00CAE3',
+          success: '#4CAF50',
+          warning: '#FB8C00',
+          error: '#FF5252',
+        },
+      },
+    },
 
   },
 

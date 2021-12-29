@@ -36,6 +36,7 @@
 <script>
   export default {
     name: 'GoogleMapsView',
+    layout: 'admin',
 
     data: () => ({
       maps: [

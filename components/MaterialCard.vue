@@ -81,7 +81,12 @@
       // eslint-disable-next-line vue/require-default-prop
       icon: String,
       iconSmall: Boolean,
-
+      // eslint-disable-next-line vue/require-default-prop
+      heading: String,
+      // eslint-disable-next-line vue/require-default-prop
+      title: String,
+      // eslint-disable-next-line vue/require-default-prop
+      subtitle: String,
 
     },
 

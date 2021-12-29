@@ -191,5 +191,6 @@
 <script>
   export default {
     name: 'RegularTablesView',
+    layout: 'admin',
   }
 </script>

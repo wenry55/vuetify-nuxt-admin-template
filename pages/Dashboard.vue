@@ -20,7 +20,8 @@
             >
               <template #subtitle>
                 <div class="font-weight-light text--secondary">
-                  <div>{{ chart.subtitle }}</div>
+                  <!-- eslint-disable-next-line vue/no-v-html -->
+                  <div v-html="chart.subtitle"></div>
                 </div>
               </template>
 

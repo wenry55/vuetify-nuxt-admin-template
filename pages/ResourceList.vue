@@ -107,6 +107,7 @@
 <script>
   export default {
     name: 'ResourceList',
+    layout: 'admin',
     props: {
       title: {
         type: String,
