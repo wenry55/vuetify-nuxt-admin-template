@@ -75,13 +75,14 @@
     name: 'MaterialCard',
 
     props: {
-      color: { type: String, default: 'red' },
-      fullHeader: { type: Boolean, default: false },
-      heading: { type: String, default: "@@@" },
-      icon: { type: String, default: "mdi-clipboard-text" },
-      iconSmall: { type: Boolean, default: false },
-      subtitle: { type: String, default: "subtitle" },
-      title: { type: String, default: "@@@" },
+      // eslint-disable-next-line vue/require-default-prop
+      color: String,
+      fullHeader: Boolean,
+      // eslint-disable-next-line vue/require-default-prop
+      icon: String,
+      iconSmall: Boolean,
+
+
     },
 
     computed: {
