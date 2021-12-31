@@ -47,6 +47,8 @@ export default {
     '@nuxtjs/auth-next',
   ],
 
+  serverMiddleware: ['~/api/index.js'],
+
   auth: {
     strategies: {
       customStrategy: {
