@@ -44,7 +44,40 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/auth-next',
   ],
+
+  auth: {
+    strategies: {
+      customStrategy: {
+        scheme: '~/schemes/customScheme.js',
+      },
+      local: {
+        token: {
+          //property: 'token',
+          //global: true,
+          // required: true,
+          // type: 'Bearer'
+          required: false,
+          type: false
+        },
+        user: {
+          property: 'user',
+          // setUser(user) should be called when user.autoFetch is disabled.
+          autoFetch: false
+        },
+        endpoints: {
+          login: { url: '/api/auth/login', method: 'post' },
+          logout: { url: '/api/auth/logout', method: 'post' },
+          user: { url: '/api/auth/user', method: 'get' }
+        }
+      }
+    }
+  },
+
+  router: {
+    middleware: ['auth']
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {

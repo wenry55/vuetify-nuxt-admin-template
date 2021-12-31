@@ -146,7 +146,7 @@ import { get } from 'vuex-pathify'
 
 export default {
   name: 'DashboardView',
-
+  // auth: 'guest',
   components: {
         MaterialChartCard: () =>
       import(
@@ -419,6 +419,11 @@ export default {
     totalSales() {
       return this.sales.reduce((acc, val) => acc + val.salesInM, 0)
     },
+  },
+
+  mounted() {
+    if (!this.$auth) return;
+    console.log('this.$auth.loggedIn', this.$auth.loggedIn)
   },
 }
 </script>
