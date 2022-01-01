@@ -64,20 +64,26 @@ export default {
   methods: {
     async userLogin() {
       // const response = await this.$auth.loginWith('local', { data: this.login })
-      await this.$auth.loginWith('local', { data: this.login })
+      try {
+        const response = await this.$auth.loginWith('local', { data: this.login })
+        console.log(response)
+        this.$router.push({ name: 'Dashboard' })
+      } catch (error) {
+        this.$toast.error(error.message)
+      }
 
       console.log('Login success')
 
       // console.log(response.status)
       // console.log('user', this.$auth.user)
 
-      this.$auth.setUser({ id: 1, user: 'bkseo', name: 'admin', email: '' })
+      // this.$auth.setUser({ id: 1, user: 'bkseo', name: 'admin', email: '' })
 
       // console.log(this.$auth.user)
       // console.log(this.$auth.loggedIn)
       // this.$router.push('dashboard')
 
-      this.$router.push({ name: 'Dashboard' })
+
     },
   },
 }

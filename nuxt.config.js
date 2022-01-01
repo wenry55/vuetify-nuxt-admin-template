@@ -64,9 +64,11 @@ export default {
           type: false
         },
         user: {
+          // field name in response body of '/api/auth/user'
           property: 'user',
           // setUser(user) should be called when user.autoFetch is disabled.
-          autoFetch: false
+          // if autoFetch is enabled, setUser will be called when user is fetched.
+          autoFetch: true
         },
         endpoints: {
           login: { url: '/api/auth/login', method: 'post' },
