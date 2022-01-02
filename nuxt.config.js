@@ -75,10 +75,22 @@ export default {
           logout: { url: '/api/auth/logout', method: 'post' },
           user: { url: '/api/auth/user', method: 'get' }
         }
+      },
+      google: {
+        clientId: '489923389160-mqk1crnpqkn941gvcddgdm47kq1qclpe.apps.googleusercontent.com',
+        codeChallengeMethod: '',
+        responseType: ['token', 'id_token'],
+        // endpoints: {
+        //   // somm backend url to resolve your auth with google and give you the token back
+        //   token: 'http://localhost:3000/api/auth/google/user',
+        //   // the endpoint to get the user info after you recived the token 
+        //   userInfo: 'http://localhost:3000/api/auth/user'
+        // }
       }
     }
   },
 
+  // google auth 연동 => https://gmyankee.tistory.com/348
   router: {
     middleware: ['auth']
   },
@@ -86,7 +98,7 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/',
+    baseURL: '/api/',
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
