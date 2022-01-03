@@ -7,7 +7,7 @@ export default {
     titleTemplate: '%s - rbac-v2',
     title: 'rbac-v2',
     htmlAttrs: {
-      lang: 'en',
+      lang: 'ko',
     },
     meta: [
       { charset: 'utf-8' },
