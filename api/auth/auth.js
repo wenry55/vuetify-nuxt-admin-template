@@ -20,4 +20,5 @@ module.exports = function (app) {
         console.log('auth.js - user called')
         res.send({ user: 'bkseo' })
     })
+
 }

@@ -1,3 +1,6 @@
+import session from "express-session"
+import bodyParser from "body-parser"
+
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -47,7 +50,17 @@ export default {
     '@nuxtjs/auth-next',
   ],
 
-  serverMiddleware: ['~/api/index.js'],
+  serverMiddleware: [
+    // body-parser middleware
+    bodyParser.json(),
+    session({
+      secret: 'super-secret-key',
+      resave: false,
+      saveUninitialized: false,
+      cookie: { maxAge: 60000 },
+    }),
+    // Api middleware
+    '~/api/index.js'],
 
   auth: {
     strategies: {
@@ -131,5 +144,11 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    extend(config, ctx) {
+      if (ctx.isDev) {
+        config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
+      }
+    }
+  }
 }

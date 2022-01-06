@@ -1,12 +1,8 @@
 const auth = require('../auth')
+const test = require('../test')
 
 
 module.exports = function (app) {
     auth(app)
-//    console.log('router called')
-
-    
-//     auth.imported()
-//     app.route("/hello").get(auth.hello);
-
+    test(app)
 }

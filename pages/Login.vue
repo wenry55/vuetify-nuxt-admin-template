@@ -61,6 +61,15 @@
                 >
                   LOGIN WITH GOOGLE
                 </v-btn>
+
+                <v-btn
+                  color="primary"
+                  text
+                  :disabled="!valid"
+                  @click="userLoginSso"
+                >
+                  SSO LOGIN
+                </v-btn>
               </v-card-actions>
             </v-card>
           </v-col>
@@ -88,8 +97,8 @@ export default {
   },
 
   beforeCreate() {
-    console.log('beforeCreate')
-    console.log(this.$route)
+    // console.log('beforeCreate')
+    // console.log(this.$route)
 
     if (this.$route.query.code) {
       console.log('got code')
@@ -161,6 +170,12 @@ export default {
     async AxiosTestWithNuxt() {
       const response = await this.$axios.$get('/auth/user') // !same as => axios.get('/api/auth/user')
       console.log(response)
+    },
+
+    userLoginSso() {
+      // const response = await axios.get('/saml/login')
+      // console.log(response)
+      this.$router.push('/api/saml/login')
     },
   },
 }
