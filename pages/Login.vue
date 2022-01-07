@@ -72,6 +72,20 @@
                 </v-btn>
               </v-card-actions>
             </v-card>
+            <v-row>
+              <v-col>
+                <v-btn
+                  color="primary"
+                  class="ma-2"
+                  outlined
+                  large
+                  @click="userLoginOIDC"
+                  :disabled="!valid"
+                >
+                  OIDC
+                </v-btn>
+              </v-col>
+            </v-row>
           </v-col>
         </v-row>
       </v-container>
@@ -116,16 +130,6 @@ export default {
       //   })
     }
   },
-
-  // beforeMount() {
-  //   console.log('beforeMount')
-  //   console.log(this.$route)
-  // },
-
-  // mounted() {
-  //   console.log('mounted')
-  //   console.log(this.$route)
-  // },
 
   methods: {
     async userLogin() {
@@ -175,7 +179,19 @@ export default {
     userLoginSso() {
       // const response = await axios.get('/saml/login')
       // console.log(response)
-      this.$router.push('/api/saml/login')
+      console.log('userLoginSso')
+      window.location.href = '/api/saml/login'
+    },
+
+    async userLoginOidc() {
+      try {
+        const response = await this.$auth.loginWith('openIDConnect')
+        
+        console.log(response)
+        this.$router.push({ name: 'Dashboard' })
+      } catch (error) {
+        this.$toast.error(error.message)
+      }
     },
   },
 }

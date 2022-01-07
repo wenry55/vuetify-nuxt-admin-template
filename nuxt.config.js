@@ -99,7 +99,26 @@ export default {
         //   // the endpoint to get the user info after you recived the token 
         //   userInfo: 'http://localhost:3000/api/auth/user'
         // }
+      },
+
+      oidc: {
+        scheme: 'openIDConnect',
+        clientId: '0f47e28da03ee9d929150f9f5c7200f0c9cd1e6a',
+        endpoints: {
+          configuration: 'https://authentik.codiplay.com/application/o/vue-nuxt/.well-known/openid-configuration',
+        },
+        idToken: {
+          property: 'id_token',
+          maxAge: 60 * 60 * 24 * 30,
+          prefix: '_id_token.',
+          expirationPrefix: '_id_token_expiration.'
+        },
+        responseType: 'code',
+        grantType: 'authorization_code',
+        scope: ['openid', 'profile', 'offline_access'],
+        codeChallengeMethod: 'S256',
       }
+
     }
   },
 
