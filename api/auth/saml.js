@@ -52,7 +52,8 @@ module.exports = function (app) {
 
     var options = { request_body: req.body };
     if (req.session.authUser) {
-      res.send('already logged in');
+      // res.send('already logged in');
+      res.redirect('/dashboard')
       return;
     }
 
@@ -67,7 +68,8 @@ module.exports = function (app) {
       // session_index = saml_response.user.session_index;
 
       req.session.authUser = saml_response.user.name_id;
-      res.send(`Hello ${saml_response.user.name_id}!`);
+      // res.send(`Hello ${saml_response.user.name_id}!`);
+      res.redirect('/dashboard');
     });
   })
 

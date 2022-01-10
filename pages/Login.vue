@@ -84,6 +84,16 @@
                 >
                   OIDC
                 </v-btn>
+                <v-btn
+                  color="primary"
+                  class="ma-2"
+                  outlined
+                  large
+                  @click="userLoginBK"
+                  :disabled="!valid"
+                >
+                  BKAUTH
+                </v-btn>
               </v-col>
             </v-row>
           </v-col>
@@ -183,16 +193,37 @@ export default {
       window.location.href = '/api/saml/login'
     },
 
-    async userLoginOidc() {
+    async userLoginOIDC() {
       try {
-        const response = await this.$auth.loginWith('openIDConnect')
-        
-        console.log(response)
-        this.$router.push({ name: 'Dashboard' })
+        const response = await this.$auth.loginWith('authentik')
+
+        console.log('rewre', response)
+        // this.$router.push({ name: 'Dashboard' })
       } catch (error) {
         this.$toast.error(error.message)
       }
     },
+
+ userLoginBK() {
+       this.$auth.loginWith('bkauth')
+
+
+    },
+  },
+
+  mounted() {
+    // if (this.$route.query.code) {
+    //   console.log('got code')
+    //   window.location.href = '/userlist'
+    // }
+    // debugger;
+    console.log('loggedin', this.$auth.loggedIn)
+    console.log('user', this.$auth.user)
+
+    // if (this.$auth.user != null) {
+    //   this.$storage.setState("loggedIn", true);
+    //    this.$router.push({ name: 'Dashboard' })
+    // }
   },
 }
 </script>

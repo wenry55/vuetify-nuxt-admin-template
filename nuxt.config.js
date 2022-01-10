@@ -1,5 +1,5 @@
-import session from "express-session"
-import bodyParser from "body-parser"
+import session from 'express-session'
+import bodyParser from 'body-parser'
 
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
@@ -60,9 +60,15 @@ export default {
       cookie: { maxAge: 60000 },
     }),
     // Api middleware
-    '~/api/index.js'],
+    '~/api/index.js',
+  ],
 
   auth: {
+    watchLoggedIn: true,
+    resetOnError: true,
+    // vuex: {
+    //   namespace: 'auth',
+    // },
     strategies: {
       customStrategy: {
         scheme: '~/schemes/customScheme.js',
@@ -74,57 +80,79 @@ export default {
           // required: true,
           // type: 'Bearer'
           required: false,
-          type: false
+          type: false,
         },
         user: {
           // field name in response body of '/api/auth/user'
           property: 'user',
           // setUser(user) should be called when user.autoFetch is disabled.
           // if autoFetch is enabled, setUser will be called when user is fetched.
-          autoFetch: true
+          autoFetch: true,
         },
         endpoints: {
           login: { url: '/api/auth/login', method: 'post' },
           logout: { url: '/api/auth/logout', method: 'post' },
-          user: { url: '/api/auth/user', method: 'get' }
-        }
+          user: { url: '/api/auth/user', method: 'get' },
+        },
       },
       google: {
-        clientId: '489923389160-mqk1crnpqkn941gvcddgdm47kq1qclpe.apps.googleusercontent.com',
+        clientId:
+          '489923389160-mqk1crnpqkn941gvcddgdm47kq1qclpe.apps.googleusercontent.com',
         codeChallengeMethod: '',
         responseType: ['token', 'id_token'],
         // endpoints: {
         //   // somm backend url to resolve your auth with google and give you the token back
         //   token: 'http://localhost:3000/api/auth/google/user',
-        //   // the endpoint to get the user info after you recived the token 
+        //   // the endpoint to get the user info after you recived the token
         //   userInfo: 'http://localhost:3000/api/auth/user'
         // }
       },
 
-      oidc: {
+      authentik: {
         scheme: 'openIDConnect',
         clientId: '0f47e28da03ee9d929150f9f5c7200f0c9cd1e6a',
         endpoints: {
-          configuration: 'https://authentik.codiplay.com/application/o/vue-nuxt/.well-known/openid-configuration',
+          configuration:
+            'https://authentik.codiplay.com/application/o/vue-nuxt/.well-known/openid-configuration',
         },
         idToken: {
           property: 'id_token',
           maxAge: 60 * 60 * 24 * 30,
           prefix: '_id_token.',
-          expirationPrefix: '_id_token_expiration.'
+          expirationPrefix: '_id_token_expiration.',
         },
         responseType: 'code',
         grantType: 'authorization_code',
         scope: ['openid', 'profile', 'offline_access'],
         codeChallengeMethod: 'S256',
-      }
+      },
 
-    }
+      bkauth: {
+        scheme: 'openIDConnect',
+        clientId: '23cd2d50b8d338ef9bd0d8a542218c7436755e47',
+        endpoints: {
+          configuration:
+            'https://authentik.codiplay.com/application/o/bkauth-app/.well-known/openid-configuration',
+
+        },
+        responseType: 'code',
+        grantType: 'authorization_code',
+        scope: ['openid', 'profile'],
+        acrValues: ['goauthentik.io/providers/oauth2/default'],
+        codeChallengeMethod: 'S256',
+        // redirectUri: 'http://localhost:3000/api/auth/oidc/callback',
+      },
+    },
+    // redirect: {
+    //   login: '/login',
+    //   logout: '/',
+    //   home: '/dashboard',
+    // },
   },
 
   // google auth 연동 => https://gmyankee.tistory.com/348
   router: {
-    middleware: ['auth']
+    middleware: ['auth'],
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -159,7 +187,6 @@ export default {
         },
       },
     },
-
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
@@ -168,6 +195,6 @@ export default {
       if (ctx.isDev) {
         config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
       }
-    }
-  }
+    },
+  },
 }

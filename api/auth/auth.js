@@ -21,4 +21,15 @@ module.exports = function (app) {
         res.send({ user: 'bkseo' })
     })
 
+    app.route("/auth/oidc/callback").post(async function (req, res) {
+        console.log('auth openid callback post.')
+        res.send({ user: 'post' })
+    })
+
+    app.route("/auth/oidc/callback").get(async function (req, res) {
+        console.log('auth openid callback get.')
+        // req.session.authUser = 'bkseo'
+        res.send({ user: 'get' })
+    })
+
 }
