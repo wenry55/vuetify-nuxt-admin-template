@@ -31,16 +31,16 @@
                 <v-btn
                   color="primary"
                   text
-                  @click="AxiosTest"
                   :disabled="!valid"
+                  @click="AxiosTest"
                 >
                   AxiosTest
                 </v-btn>
                 <v-btn
                   color="primary"
                   text
-                  @click="AxiosTestWithNuxt"
                   :disabled="!valid"
+                  @click="AxiosTestWithNuxt"
                 >
                   AxiosTestWithNuxt
                 </v-btn>
@@ -79,8 +79,8 @@
                   class="ma-2"
                   outlined
                   large
-                  @click="userLoginOIDC"
                   :disabled="!valid"
+                  @click="userLoginOIDC"
                 >
                   OIDC
                 </v-btn>
@@ -89,8 +89,8 @@
                   class="ma-2"
                   outlined
                   large
-                  @click="userLoginBK"
                   :disabled="!valid"
+                  @click="userLoginBK"
                 >
                   BKAUTH
                 </v-btn>
@@ -119,98 +119,6 @@ export default {
       valid: false,
     }
   },
-
-  beforeCreate() {
-    // console.log('beforeCreate')
-    // console.log(this.$route)
-
-    if (this.$route.query.code) {
-      console.log('got code')
-      // this.$axios.get("/auth/user").then(response => {
-      //   console.log(response)
-      // })
-      // this.$router.push("/userlist")
-      // this.$axios.setToken('123', 'Bearer')
-      // this.$axios.get('/auth/google/user?code=' + this.$route.query.code)
-      //   .then(response => {
-      //     console.log('response~~')
-      //   })
-      //   .catch(error => {
-      //     console.log(error)
-      //   })
-    }
-  },
-
-  methods: {
-    async userLogin() {
-      // const response = await this.$auth.loginWith('local', { data: this.login })
-      try {
-        const response = await this.$auth.loginWith('local', {
-          data: this.login,
-        })
-        console.log(response)
-        this.$router.push({ name: 'Dashboard' })
-      } catch (error) {
-        this.$toast.error(error.message)
-      }
-
-      console.log('Login success')
-
-      // console.log(response.status)
-      // console.log('user', this.$auth.user)
-
-      // this.$auth.setUser({ id: 1, user: 'bkseo', name: 'admin', email: '' })
-
-      // console.log(this.$auth.user)
-      // console.log(this.$auth.loggedIn)
-      // this.$router.push('dashboard')
-    },
-    async userLoginGoogle() {
-      try {
-        console.log('userLoginGoogle')
-        const response = await this.$auth.loginWith('google')
-        console.log(response)
-        this.$router.push({ name: 'Dashboard' })
-      } catch (error) {
-        this.$toast.error(error.message)
-      }
-    },
-
-    async AxiosTest() {
-      // const response = await this.$axios.$get('/auth/user') // !same as => axios.get('/api/auth/user')
-      const response = await axios.get('/api/auth/user') // !same as => axios.get('/api/auth/user')
-      console.log(response)
-    },
-    async AxiosTestWithNuxt() {
-      const response = await this.$axios.$get('/auth/user') // !same as => axios.get('/api/auth/user')
-      console.log(response)
-    },
-
-    userLoginSso() {
-      // const response = await axios.get('/saml/login')
-      // console.log(response)
-      console.log('userLoginSso')
-      window.location.href = '/api/saml/login'
-    },
-
-    async userLoginOIDC() {
-      try {
-        const response = await this.$auth.loginWith('authentik')
-
-        console.log('rewre', response)
-        // this.$router.push({ name: 'Dashboard' })
-      } catch (error) {
-        this.$toast.error(error.message)
-      }
-    },
-
- userLoginBK() {
-       this.$auth.loginWith('authentik')
-
-
-    },
-  },
-
   mounted() {
     // if (this.$route.query.code) {
     //   console.log('got code')
@@ -224,6 +132,68 @@ export default {
     //   this.$storage.setState("loggedIn", true);
     //    this.$router.push({ name: 'Dashboard' })
     // }
+
+    // if (!this.$route.query.code) {
+    //   this.$auth.loginWith('authentik')
+    // }
+  },
+  methods: {
+    async userLogin() {
+      // const response = await this.$auth.loginWith('local', { data: this.login })
+      try {
+        await this.$auth.loginWith('local', {
+          data: this.login,
+        })
+        this.$router.push({ name: 'Dashboard' })
+      } catch (error) {
+        this.$toast.error(error.message)
+      }
+
+      // console.log(response.status)
+      // console.log('user', this.$auth.user)
+
+      // this.$auth.setUser({ id: 1, user: 'bkseo', name: 'admin', email: '' })
+
+      // console.log(this.$auth.user)
+      // console.log(this.$auth.loggedIn)
+      // this.$router.push('dashboard')
+    },
+    async userLoginGoogle() {
+      try {
+        await this.$auth.loginWith('google')
+        this.$router.push({ name: 'Dashboard' })
+      } catch (error) {
+        this.$toast.error(error.message)
+      }
+    },
+
+    async AxiosTest() {
+      // const response = await this.$axios.$get('/auth/user') // !same as => axios.get('/api/auth/user')
+      await axios.get('/api/auth/user') // !same as => axios.get('/api/auth/user')
+    },
+    async AxiosTestWithNuxt() {
+      await this.$axios.$get('/auth/user') // !same as => axios.get('/api/auth/user')
+    },
+
+    userLoginSso() {
+      // const response = await axios.get('/saml/login')
+      // console.log(response)
+      window.location.href = '/api/saml/login'
+    },
+
+    async userLoginOIDC() {
+      try {
+        await this.$auth.loginWith('authentik')
+
+        // this.$router.push({ name: 'Dashboard' })
+      } catch (error) {
+        this.$toast.error(error.message)
+      }
+    },
+
+    userLoginBK() {
+      this.$auth.loginWith('authentik')
+    },
   },
 }
 </script>

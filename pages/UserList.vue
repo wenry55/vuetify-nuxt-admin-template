@@ -78,7 +78,7 @@
 export default {
   name: "UserList",
   layout: 'admin',
-  auth: 'guest',
+  // auth: 'guest',
   props: {
     title: {
       type: String,
