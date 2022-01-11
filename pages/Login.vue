@@ -205,7 +205,7 @@ export default {
     },
 
  userLoginBK() {
-       this.$auth.loginWith('bkauth')
+       this.$auth.loginWith('authentik')
 
 
     },

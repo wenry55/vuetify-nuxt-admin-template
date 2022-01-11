@@ -127,8 +127,8 @@ export default {
         codeChallengeMethod: 'S256',
       },
 
-      bkauth: {
-        scheme: 'openIDConnect',
+      authentik: {
+        scheme: '~/schemes/authentik.js',
         clientId: '23cd2d50b8d338ef9bd0d8a542218c7436755e47',
         endpoints: {
           configuration:
@@ -142,6 +142,8 @@ export default {
         codeChallengeMethod: 'S256',
         // redirectUri: 'http://localhost:3000/api/auth/oidc/callback',
       },
+
+      
     },
     // redirect: {
     //   login: '/login',
