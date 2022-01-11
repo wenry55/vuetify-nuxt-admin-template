@@ -108,24 +108,28 @@ export default {
         // }
       },
 
-      authentik: {
-        scheme: 'openIDConnect',
-        clientId: '0f47e28da03ee9d929150f9f5c7200f0c9cd1e6a',
-        endpoints: {
-          configuration:
-            'https://authentik.codiplay.com/application/o/vue-nuxt/.well-known/openid-configuration',
-        },
-        idToken: {
-          property: 'id_token',
-          maxAge: 60 * 60 * 24 * 30,
-          prefix: '_id_token.',
-          expirationPrefix: '_id_token_expiration.',
-        },
-        responseType: 'code',
-        grantType: 'authorization_code',
-        scope: ['openid', 'profile', 'offline_access'],
-        codeChallengeMethod: 'S256',
-      },
+      // authentik: {
+      //   scheme: 'openIDConnect',
+      //   clientId: '0f47e28da03ee9d929150f9f5c7200f0c9cd1e6a',
+      //   endpoints: {
+      //     configuration:
+      //       'https://authentik.codiplay.com/application/o/vue-nuxt/.well-known/openid-configuration',
+      //   },
+      //   idToken: {
+      //     property: 'id_token',
+      //     maxAge: 60 * 60 * 24 * 30,
+      //     prefix: '_id_token.',
+      //     expirationPrefix: '_id_token_expiration.',
+      //   },
+      //   responseType: 'code',
+      //   grantType: 'authorization_code',
+      //   scope: ['openid', 'profile', 'offline_access'],
+      //   codeChallengeMethod: 'S256',
+      //   refreshToken: {
+      //     property: 'refresh_token',
+      //     maxAge: 60 * 60 * 24 * 30
+      //   },
+      // },
 
       authentik: {
         scheme: '~/schemes/authentik.js',
@@ -141,9 +145,15 @@ export default {
         acrValues: ['goauthentik.io/providers/oauth2/default'],
         codeChallengeMethod: 'S256',
         // redirectUri: 'http://localhost:3000/api/auth/oidc/callback',
+        refreshToken: {
+          property: 'refresh_token',
+          maxAge: 60 * 60 * 24 * 30,
+          prefix: '_refresh_token.',
+          expirationPrefix: '_refresh_token_expiration.',
+        },
       },
 
-      
+
     },
     // redirect: {
     //   login: '/login',

@@ -52,7 +52,13 @@ const DEFAULTS$1 = {
     prefix: "_id_token.",
     expirationPrefix: "_id_token_expiration."
   },
-  codeChallengeMethod: "S256"
+  codeChallengeMethod: "S256",
+  refreshToken: {
+    property: "refresh_token",
+    maxAge: 60 * 60 * 24 * 30,
+    prefix: "_refresh_token.",
+    expirationPrefix: "_refresh_token_expiration."
+  },
 };
 
 export default class Authentik extends OpenIDConnectScheme {
@@ -99,7 +105,9 @@ export default class Authentik extends OpenIDConnectScheme {
     }
 
     const tokenStatus = this.token.status();
-    // const refreshTokenStatus = this.refreshToken.status();
+    debugger;
+    const refreshTokenStatus = this.refreshToken.status();
+    console.log('reftok', refreshTokenStatus)
     const idTokenStatus = this.idToken.status();
 
    //  console.log('tokenStatus', tokenStatus, refreshTokenStatus, idTokenStatus)
