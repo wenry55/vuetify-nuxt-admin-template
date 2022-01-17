@@ -57,7 +57,16 @@ const state = {
       icon: 'mdi-archive',
       to: '/resourcelist',
     },
-
+    {
+      title: '스케쥴',
+      icon: 'mdi-calendar-clock',
+      to: '/calendar',
+    },
+    {
+      title: '스케쥴-연속',
+      icon: 'mdi-calendar-clock',
+      to: '/slotcalendar',
+    },
   ],
 }
 
